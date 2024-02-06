@@ -1,0 +1,14 @@
+{
+  "swaggerDefinition": {
+    "openapi": "3.1.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Bot Marcador API",
+      "description": "Bot Marcador API Information",
+      "contact": {
+        "name": "Developeres team"
+      }
+    }
+  },
+  "apis": ["src/routes/*.routes.js"]
+}
