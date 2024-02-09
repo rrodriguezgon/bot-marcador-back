@@ -1,6 +1,7 @@
 const express = require("express");
 const torneoController = require("../controllers/torneoController");
 const router = express.Router();
+// https://swagger.io/docs/specification/basic-structure/
 /**
  * @swagger
  * components:
@@ -75,5 +76,29 @@ const router = express.Router();
  *                      $ref: '#/components/schemas/Torneo'
  */
 router.get("/", torneoController.getAllTorneos);
+
+/**
+* @swagger
+* /api/v1/torneos/{id}:
+*  get:
+*    tags: [torneo]
+*    description: Use to request one torneo
+*    parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: Numeric ID of the torneo to get
+*    responses:
+*      '200':
+*        description: A successful response
+*        content:
+*          application/json:
+*              schema:
+*                  type: object
+*                  $ref: '#/components/schemas/Torneo'
+*/
+router.get("/:id", torneoController.getTorneoById);
 
 module.exports = router;

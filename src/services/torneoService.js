@@ -8,6 +8,15 @@ const getAllTorneos = async () => {
     }
 };
 
+const getTorneoById = async (id) => {
+    try {
+        return await torneoRepository.getTorneoById(id);
+    } catch(err){
+        throw err;
+    }
+};
+
 module.exports = {
     getAllTorneos,
+    getTorneoById,
 };
