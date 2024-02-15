@@ -8,6 +8,14 @@ const getAllTorneos = async () => {
     }
 };
 
+const getAllTorneosWithFilters = async (filters) => {
+    try {
+        return await torneoRepository.getAllTorneosWithFilters(filters);
+    } catch(err){
+        throw err;
+    }
+};
+
 const getTorneoById = async (id) => {
     try {
         return await torneoRepository.getTorneoById(id);
@@ -18,5 +26,6 @@ const getTorneoById = async (id) => {
 
 module.exports = {
     getAllTorneos,
+    getAllTorneosWithFilters,
     getTorneoById,
 };

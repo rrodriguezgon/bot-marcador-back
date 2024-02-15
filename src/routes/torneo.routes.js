@@ -79,6 +79,23 @@ router.get("/", torneoController.getAllTorneos);
 
 /**
 * @swagger
+* /api/v1/torneosWithFilters:
+*  post:
+*    tags: [torneo]
+*    description: Use to request all torneos
+*    responses:
+*      '200':
+*        description: A successful response
+*        content:
+*          application/json:
+*              schema:
+*                  type: array
+*                  items:
+*                      $ref: '#/components/schemas/Torneo'
+*/
+router.post("/filters", torneoController.getAllTorneosWithFilters);
+/**
+* @swagger
 * /api/v1/torneos/{id}:
 *  get:
 *    tags: [torneo]
