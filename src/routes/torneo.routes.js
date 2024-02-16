@@ -79,7 +79,7 @@ router.get("/", torneoController.getAllTorneos);
 
 /**
 * @swagger
-* /api/v1/torneosWithFilters:
+* /api/v1/torneos/Filters:
 *  post:
 *    tags: [torneo]
 *    description: Use to request all torneos

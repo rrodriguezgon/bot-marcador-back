@@ -8,6 +8,15 @@ const getAllLogs = async () => {
     }
 };
 
+const getAllLogsWithFilters = async (filters) => {
+    try {
+        return await logRepository.getAllLogsWithFilters(filters);
+    } catch(err){
+        throw err;
+    }
+};
+
 module.exports = {
     getAllLogs,
+    getAllLogsWithFilters,
 };

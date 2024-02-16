@@ -32,7 +32,7 @@ const router = express.Router();
  * /api/v1/logs:
  *  get:
  *    tags: [log]
- *    description: Use to request all torneos
+ *    description: Use to request all Log
  *    responses:
  *      '200':
  *        description: A successful response
@@ -44,5 +44,23 @@ const router = express.Router();
  *                      $ref: '#/components/schemas/Log'
  */
 router.get("/", logController.getAllLogs);
+
+/**
+* @swagger
+* /api/v1/logs/Filters:
+*  post:
+*    tags: [torneo]
+*    description: Use to request all Log
+*    responses:
+*      '200':
+*        description: A successful response
+*        content:
+*          application/json:
+*              schema:
+*                  type: array
+*                  items:
+*                      $ref: '#/components/schemas/Log'
+*/
+router.post("/filters", logController.getAllLogsWithFilters);
 
 module.exports = router;
