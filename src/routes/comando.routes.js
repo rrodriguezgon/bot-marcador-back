@@ -53,4 +53,12 @@ const router = express.Router();
  */
 router.get("/", comandoController.getAllComandos);
 
+router.get("/:id", comandoController.getComandoById);
+
+router.post("/", comandoController.createComando);
+
+router.patch("/:id", comandoController.updateComando);
+
+router.delete("/:id", comandoController.deleteComando);
+
 module.exports = router;

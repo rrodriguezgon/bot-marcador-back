@@ -8,6 +8,42 @@ const getAllComandos = async () => {
     }
 };
 
+const getComandoById = async (id) => {
+    try {
+        return await comandoRepository.getComandoById(id);
+    } catch(err){
+        throw err;
+    }
+};
+
+const createComando = async (comando) => {
+    try {
+        return await comandoRepository.createComando(comando);
+    } catch(err){
+        throw err;
+    }
+};
+
+const updateComando = async (id, comando) => {
+    try {
+        return await comandoRepository.updateComando(id, comando);
+    } catch(err){
+        throw err;
+    }
+};
+
+const deleteComando = async (id) => {
+    try {
+        return await comandoRepository.deleteComando(id);
+    } catch(err){
+        throw err;
+    }
+};
+
 module.exports = {
     getAllComandos,
-};
+    getComandoById,
+    createComando,
+    updateComando,
+    deleteComando,
+  };
