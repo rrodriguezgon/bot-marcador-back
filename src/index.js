@@ -43,7 +43,7 @@ app
 const server = https.createServer(options, app);
 
 // inicialización
-server.listen(process.env.port | 4000, () => {
+app.listen(process.env.port | 4000, () => {
   console.log("Example app listening on port 4000!");
   mongoConnect();
 });
