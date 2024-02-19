@@ -33,9 +33,9 @@ const router = express.Router();
  *                      type: string
  *      estado:
  *          type: string
- *      fechaFin:
+ *      fechaInicioDate:
  *          type: string
- *      fechaInicio:
+ *      fechaFinDate:
  *          type: string
  *      horarios:
  *          type: array

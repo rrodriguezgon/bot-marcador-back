@@ -8,8 +8,8 @@ const torneo = mongoose.Schema({
     estado: String,
     timeZone: String,
     localizacion: String,
-    fechaInicio: Date,
-    fechaFin: Date,
+    fechaInicioDate: Date,
+    fechaFinDate: Date,
     tipo: String,
     mes: String,
     horarios: [{
