@@ -1,4 +1,5 @@
 const Comando = require("../models/comandos");
+const { Types } = require('mongoose');
 
 const getAllComandos = async () => {
   try {
@@ -17,6 +18,8 @@ const getComandoById = async (id) => {
 };
 
 const createComando = async (newcomando) => {
+  Object.assign(newcomando, {_id: new Types.ObjectId()});
+
   const comando = new Comando(newcomando);
 
   return await comando.save().catch((err) => {
