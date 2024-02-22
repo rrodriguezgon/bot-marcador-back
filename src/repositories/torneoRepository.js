@@ -3,7 +3,7 @@ const moment = require("moment");
 
 const getAllTorneos = async () => {
   try {
-    return await Torneo.find().sort('fechaInicioDate');
+    return await Torneo.find({ estado: {$ne: 'FINISHED'}}).sort('fechaInicioDate');
   } catch (err) {
     throw err;
   }
