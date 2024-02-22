@@ -8,6 +8,14 @@ const getAllComandos = async () => {
     }
 };
 
+const getAllComandosWithFilters = async (filters) => {
+    try {
+        return await comandoRepository.getAllComandosWithFilters(filters);
+    } catch(err){
+        throw err;
+    }
+};
+
 const getComandoById = async (id) => {
     try {
         return await comandoRepository.getComandoById(id);
@@ -42,6 +50,7 @@ const deleteComando = async (id) => {
 
 module.exports = {
     getAllComandos,
+    getAllComandosWithFilters,
     getComandoById,
     createComando,
     updateComando,

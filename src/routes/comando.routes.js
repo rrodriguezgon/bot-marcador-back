@@ -55,6 +55,24 @@ router.get("/", comandoController.getAllComandos);
 
 /**
 * @swagger
+* /api/v1/comandos/Filters:
+*  post:
+*    tags: [comando]
+*    description: Use to request all comandos
+*    responses:
+*      '200':
+*        description: A successful response
+*        content:
+*          application/json:
+*              schema:
+*                  type: array
+*                  items:
+*                      $ref: '#/components/schemas/Comando'
+*/
+router.post("/filters", comandoController.getAllComandosWithFilters);
+
+/**
+* @swagger
 * /api/v1/comandos/{id}:
 *  get:
 *    tags: [comando]

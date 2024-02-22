@@ -10,6 +10,16 @@ const getAllComandos = async (req, res, next) => {
     }
 };
 
+const getAllComandosWithFilters = async (req, res, next) => {
+    try {
+        const comandos = await comandoService.getAllComandosWithFilters(req.body);
+        res.status(200).json(comandos);
+    } catch(err){
+        console.error(err);
+        res.status(500).send('Error');
+    }
+};
+
 const getComandoById = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -36,6 +46,7 @@ const updateComando = async (req, res, next) => {
     try {
         const { body, params } = req;
         const { id } = params;
+
         const comando = await comandoService.updateComando(id, body);
         res.status(200).json(comando);
     } catch(err){
@@ -57,6 +68,7 @@ const deleteComando = async (req, res, next) => {
 
 module.exports = {
     getAllComandos,
+    getAllComandosWithFilters,
     getComandoById,
     createComando,
     updateComando,

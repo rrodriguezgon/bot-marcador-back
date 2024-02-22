@@ -9,6 +9,24 @@ const getAllComandos = async () => {
   }
 };
 
+const getAllComandosWithFilters = async (filtersParams) => {
+  try {
+    let filters = {};
+  
+    if (filtersParams.nombre) {
+      Object.assign(filters, { nombre: { $regex: filtersParams.nombre }});
+    }
+
+    if (filtersParams.tipo) {
+      Object.assign(filters, { tipo: filtersParams.tipo});
+    }
+
+    return await Comando.find(filters);
+  } catch (err) {
+    throw err;
+  }
+};
+
 const getComandoById = async (id) => {
   try {
     return await Comando.findById(id);
@@ -50,6 +68,7 @@ const deleteComando = async (id) => {
 
 module.exports = {
   getAllComandos,
+  getAllComandosWithFilters,
   getComandoById,
   createComando,
   updateComando,
