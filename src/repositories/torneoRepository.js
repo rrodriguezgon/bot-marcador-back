@@ -21,7 +21,7 @@ const getAllTorneosWithFilters = async (filtersParams) => {
       Object.assign(filters, { estado: filtersParams.estado});
     }
 
-    if (filtersParams.terminado) {
+    if (!filtersParams.terminado) {
       Object.assign(filters, { estado: {$ne: 'FINISHED'}});
     }
 
