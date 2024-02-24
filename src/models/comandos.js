@@ -7,6 +7,7 @@ const comandos = mongoose.Schema({
     tipo: String,
     intervalo: Number,
     ultimaFechaEjecucion: Date,
+    horaEjecucion: Date,
     activo: Boolean,
     lanzado: Boolean,
 })

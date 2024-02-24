@@ -47,7 +47,7 @@ const createComando = async (newcomando) => {
 
 const updateComando = async (id, upcomando) => {
 
-  return await torneo
+  return await Comando
     .findByIdAndUpdate(id, upcomando, {
       new: true,
       upsert: true, // Make this update into an upsert
@@ -59,7 +59,7 @@ const updateComando = async (id, upcomando) => {
 
 const deleteComando = async (id) => {
 
-  return await torneo
+  return await Comando
     .findByIdAndDelete(id)
     .catch((err) => {
       throw err;
