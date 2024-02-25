@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const comandos = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     nombre: String,
-    parametros: Array,
+    parametros: String,
     tipo: String,
     intervalo: Number,
     ultimaFechaEjecucion: Date,
