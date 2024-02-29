@@ -1,8 +1,10 @@
 const express = require("express");
 const comandoController = require("../controllers/comandoController");
 const router = express.Router();
+const authenticateToken = require('../middleware/authenticateToken');
+
 // https://swagger.io/docs/specification/basic-structure/
-/**
+/** Component
  * @swagger
  * components:
  *  schemas:
@@ -32,15 +34,23 @@ const router = express.Router();
  *          type: boolean
  *      lanzado:
  *          type: boolean
+ */
+
+/** Tag
  * @swagger
  *  tags:
  *    name: comando
  *    description: Controlador de Comandos.
+ */
+
+/** GET - /api/v1/comandos
  * @swagger
  * /api/v1/comandos:
  *  get:
  *    tags: [comando]
  *    description: Use to request all comandos
+ *    security:
+ *     - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -51,14 +61,16 @@ const router = express.Router();
  *                  items:
  *                      $ref: '#/components/schemas/Comando'
  */
-router.get("/", comandoController.getAllComandos);
+router.get("/", authenticateToken, comandoController.getAllComandos);
 
-/**
+/** POST - /api/v1/comandos/Filters
 * @swagger
 * /api/v1/comandos/Filters:
 *  post:
 *    tags: [comando]
 *    description: Use to request all comandos
+*    security:
+*     - bearerAuth: []
 *    responses:
 *      '200':
 *        description: A successful response
@@ -69,14 +81,16 @@ router.get("/", comandoController.getAllComandos);
 *                  items:
 *                      $ref: '#/components/schemas/Comando'
 */
-router.post("/filters", comandoController.getAllComandosWithFilters);
+router.post("/filters", authenticateToken, comandoController.getAllComandosWithFilters);
 
-/**
+/** GET - /api/v1/comandos/{id}
 * @swagger
 * /api/v1/comandos/{id}:
 *  get:
 *    tags: [comando]
 *    description: Use to request one comando
+*    security:
+*     - bearerAuth: []
 *    parameters:
 *       - in: path
 *         name: id
@@ -93,14 +107,16 @@ router.post("/filters", comandoController.getAllComandosWithFilters);
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.get("/:id", comandoController.getComandoById);
+router.get("/:id", authenticateToken, comandoController.getComandoById);
 
-/**
+/** POST - /api/v1/comandos
 * @swagger
 * /api/v1/comandos:
 *  post:
 *    tags: [comando]
 *    description: Use to request one comando
+*    security:
+*     - bearerAuth: []
 *    requestBody:
 *      description: Nuevo objeto
 *      content:
@@ -117,14 +133,16 @@ router.get("/:id", comandoController.getComandoById);
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.post("/", comandoController.createComando);
+router.post("/", authenticateToken, comandoController.createComando);
 
-/**
+/** PATCH - /api/v1/comandos/{id}
 * @swagger
 * /api/v1/comandos/{id}:
 *  patch:
 *    tags: [comando]
 *    description: Use to request one comando
+*    security:
+*     - bearerAuth: []
 *    parameters:
 *       - in: path
 *         name: id
@@ -148,14 +166,16 @@ router.post("/", comandoController.createComando);
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.patch("/:id", comandoController.updateComando);
+router.patch("/:id", authenticateToken, comandoController.updateComando);
 
-/**
+/** DELETE - /api/v1/comandos/{id}
 * @swagger
 * /api/v1/comandos/{id}:
 *  delete:
 *    tags: [comando]
 *    description: Use to request one comando
+*    security:
+*     - bearerAuth: []
 *    parameters:
 *       - in: path
 *         name: id
@@ -167,6 +187,6 @@ router.patch("/:id", comandoController.updateComando);
 *      '200':
 *        description: A successful response
 */
-router.delete("/:id", comandoController.deleteComando);
+router.delete("/:id", authenticateToken, comandoController.deleteComando);
 
 module.exports = router;

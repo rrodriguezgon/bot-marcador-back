@@ -1,8 +1,10 @@
 const express = require("express");
 const torneoController = require("../controllers/torneoController");
 const router = express.Router();
+const authenticateToken = require('../middleware/authenticateToken');
+
 // https://swagger.io/docs/specification/basic-structure/
-/**
+/** Component
  * @swagger
  * components:
  *  schemas:
@@ -56,15 +58,23 @@ const router = express.Router();
  *          type: string
  *      linkMarcador:
  *          type: string
+ */
+
+/** Tag
  * @swagger
  *  tags:
  *    name: torneo
  *    description: Controlador de Torneos.
+ */
+
+/** GET - /api/v1/torneos
  * @swagger
  * /api/v1/torneos:
  *  get:
  *    tags: [torneo]
  *    description: Use to request all torneos
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -75,14 +85,16 @@ const router = express.Router();
  *                  items:
  *                      $ref: '#/components/schemas/Torneo'
  */
-router.get("/", torneoController.getAllTorneos);
+router.get("/", authenticateToken, torneoController.getAllTorneos);
 
-/**
+/** POST - /api/v1/torneos/Filters
 * @swagger
 * /api/v1/torneos/Filters:
 *  post:
 *    tags: [torneo]
 *    description: Use to request all torneos
+*    security:
+*      - bearerAuth: []
 *    responses:
 *      '200':
 *        description: A successful response
@@ -93,13 +105,16 @@ router.get("/", torneoController.getAllTorneos);
 *                  items:
 *                      $ref: '#/components/schemas/Torneo'
 */
-router.post("/filters", torneoController.getAllTorneosWithFilters);
-/**
+router.post("/filters", authenticateToken, torneoController.getAllTorneosWithFilters);
+
+/** GET - /api/v1/torneos/{id}
 * @swagger
 * /api/v1/torneos/{id}:
 *  get:
 *    tags: [torneo]
 *    description: Use to request one torneo
+*    security:
+*      - bearerAuth: []
 *    parameters:
 *       - in: path
 *         name: id
@@ -116,6 +131,6 @@ router.post("/filters", torneoController.getAllTorneosWithFilters);
 *                  type: object
 *                  $ref: '#/components/schemas/Torneo'
 */
-router.get("/:id", torneoController.getTorneoById);
+router.get("/:id", authenticateToken, torneoController.getTorneoById);
 
 module.exports = router;

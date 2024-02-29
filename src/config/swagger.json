@@ -8,6 +8,19 @@
       "contact": {
         "name": "Developeres team"
       }
+    },
+    "components":
+      {
+        "securitySchemes": {
+          "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
+        }
+      },
+    "security": {
+      "bearerAuth": []
     }
   },
   "apis": ["src/routes/*.routes.js"]

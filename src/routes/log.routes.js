@@ -1,7 +1,9 @@
 const express = require("express");
 const logController = require("../controllers/logController");
 const router = express.Router();
-/**
+const authenticateToken = require('../middleware/authenticateToken');
+
+/** Component
  * @swagger
  * components:
  *  schemas:
@@ -24,15 +26,23 @@ const router = express.Router();
  *     __v: 
  *      type: integer
  *      format: int32
+ */
+
+/** Tag 
  * @swagger
  *  tags:
  *    name: log
  *    description: Controlador de Logs.
+ */
+
+/** GET - /api/v1/logs
  * @swagger
  * /api/v1/logs:
  *  get:
  *    tags: [log]
  *    description: Use to request all Log
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -43,14 +53,16 @@ const router = express.Router();
  *                  items:
  *                      $ref: '#/components/schemas/Log'
  */
-router.get("/", logController.getAllLogs);
+router.get("/", authenticateToken, logController.getAllLogs);
 
-/**
+/** POST - /api/v1/logs/Filters
 * @swagger
 * /api/v1/logs/Filters:
 *  post:
-*    tags: [torneo]
+*    tags: [log]
 *    description: Use to request all Log
+*    security:
+*      - bearerAuth: []
 *    responses:
 *      '200':
 *        description: A successful response
@@ -61,6 +73,6 @@ router.get("/", logController.getAllLogs);
 *                  items:
 *                      $ref: '#/components/schemas/Log'
 */
-router.post("/filters", logController.getAllLogsWithFilters);
+router.post("/filters", authenticateToken, logController.getAllLogsWithFilters);
 
 module.exports = router;
