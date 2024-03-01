@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: copy file to server
-      uses: appleboy/scp-action@v0.1.7
+    - name: Copy folder content recursively to remote
+      uses: garygrossgarten/github-action-scp@release
       with:
+        local: .
+        remote: /home/ubuntu/bot-marcador-back
         host: 217.182.129.103
         port: 4568
         username: ubuntu
         password: 9bPEfwDX9gkG
-        rm: true
-        source: /*
-        target: /home/ubuntu/bot-marcador-back
+        rmRemote: true
     - name: launch command
       uses: appleboy/ssh-action@v1.0.3
       with:
