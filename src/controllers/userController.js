@@ -1,5 +1,6 @@
 const userService = require('../services/userService');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 async function registerUser(req, res) {
   try {

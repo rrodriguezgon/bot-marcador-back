@@ -4,19 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan"); // Carga el logger de Morgan
 const bodyParser = require("body-parser");
-const https = require("https");
-const fs = require("fs");
-
-const app = express();
+const rateLimit = require('express-rate-limit');
 const routes = require("./routes/index");
-
-// config https
-var key = fs.readFileSync(__dirname + "/certs/selfsigned.key");
-var cert = fs.readFileSync(__dirname + "/certs/selfsigned.crt");
-var options = {
-  key: key,
-  cert: cert,
-};
 
 // Config swagger
 const swaggerUi = require("swagger-ui-express");
@@ -27,7 +16,17 @@ const swaggerDocs = swaggerJsDoc(swaggerConfig);
 // Config mongo
 const mongoConnect = require("./config/mongo");
 
+const app = express();
+
+const limiter = rateLimit({
+	windowMs: (process.env.rateMinuts | 1) * 60 * 1000, // 15 minutes
+	limit: (process.env.rateLimit | 5), // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+})
+
 app
+  .use(limiter) // Apply the rate limiting middleware to all requests.
   .use(cors())
   .use(morgan("dev")) // Carga el middleware de Morgan
   .use(bodyParser.json()) // to support JSON-encoded bodies
@@ -39,8 +38,6 @@ app
   )
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs)) // ruta swagger
   .use("/", routes); // enrutamientos
-
-const server = https.createServer(options, app);
 
 // inicialización
 app.listen(process.env.port | 4000, () => {
