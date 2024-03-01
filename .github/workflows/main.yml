@@ -19,7 +19,7 @@ jobs:
         username: ubuntu
         password: 9bPEfwDX9gkG
         rm: true
-        source: ./*
+        source: /
         target: /home/ubuntu/bot-marcador-back
     - name: launch command
       uses: appleboy/ssh-action@v1.0.3
