@@ -20,7 +20,8 @@ jobs:
         port: 4568
         username: ubuntu
         password: 9bPEfwDX9gkG
-    - name: multiple command
+        rmRemote: true
+    - name: launch command
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: 217.182.129.103
