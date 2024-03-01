@@ -20,3 +20,14 @@ jobs:
         port: 4568
         username: ubuntu
         password: 9bPEfwDX9gkG
+    - name: multiple command
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: 217.182.129.103
+        port: 4568
+        username: ubuntu
+        password: 9bPEfwDX9gkG
+        script: |
+          cd /home/ubuntu/bot-marcador-back
+          npm install
+          pm2 restart 2
