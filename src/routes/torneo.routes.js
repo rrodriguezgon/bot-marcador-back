@@ -85,7 +85,7 @@ const authenticateToken = require('../middleware/authenticateToken');
  *                  items:
  *                      $ref: '#/components/schemas/Torneo'
  */
-router.get("/", authenticateToken, torneoController.getAllTorneos);
+router.get("/", torneoController.getAllTorneos);
 
 /** POST - /api/v1/torneos/Filters
 * @swagger
@@ -105,7 +105,7 @@ router.get("/", authenticateToken, torneoController.getAllTorneos);
 *                  items:
 *                      $ref: '#/components/schemas/Torneo'
 */
-router.post("/filters", authenticateToken, torneoController.getAllTorneosWithFilters);
+router.post("/filters", torneoController.getAllTorneosWithFilters);
 
 /** GET - /api/v1/torneos/{id}
 * @swagger
@@ -131,6 +131,6 @@ router.post("/filters", authenticateToken, torneoController.getAllTorneosWithFil
 *                  type: object
 *                  $ref: '#/components/schemas/Torneo'
 */
-router.get("/:id", authenticateToken, torneoController.getTorneoById);
+router.get("/:id", torneoController.getTorneoById);
 
 module.exports = router;

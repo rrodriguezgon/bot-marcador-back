@@ -16,7 +16,16 @@ const loginUser = async (username, password) => {
     }
 };
 
+const validUser = async (username) => {
+    try {
+        return await userRepository.validUser(username);
+    } catch(err){
+        throw err;
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
+    validUser,
 };

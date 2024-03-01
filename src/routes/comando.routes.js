@@ -1,7 +1,6 @@
 const express = require("express");
 const comandoController = require("../controllers/comandoController");
 const router = express.Router();
-const authenticateToken = require('../middleware/authenticateToken');
 
 // https://swagger.io/docs/specification/basic-structure/
 /** Component
@@ -61,7 +60,7 @@ const authenticateToken = require('../middleware/authenticateToken');
  *                  items:
  *                      $ref: '#/components/schemas/Comando'
  */
-router.get("/", authenticateToken, comandoController.getAllComandos);
+router.get("/", comandoController.getAllComandos);
 
 /** POST - /api/v1/comandos/Filters
 * @swagger
@@ -81,7 +80,7 @@ router.get("/", authenticateToken, comandoController.getAllComandos);
 *                  items:
 *                      $ref: '#/components/schemas/Comando'
 */
-router.post("/filters", authenticateToken, comandoController.getAllComandosWithFilters);
+router.post("/filters", comandoController.getAllComandosWithFilters);
 
 /** GET - /api/v1/comandos/{id}
 * @swagger
@@ -107,7 +106,7 @@ router.post("/filters", authenticateToken, comandoController.getAllComandosWithF
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.get("/:id", authenticateToken, comandoController.getComandoById);
+router.get("/:id", comandoController.getComandoById);
 
 /** POST - /api/v1/comandos
 * @swagger
@@ -133,7 +132,7 @@ router.get("/:id", authenticateToken, comandoController.getComandoById);
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.post("/", authenticateToken, comandoController.createComando);
+router.post("/", comandoController.createComando);
 
 /** PATCH - /api/v1/comandos/{id}
 * @swagger
@@ -166,7 +165,7 @@ router.post("/", authenticateToken, comandoController.createComando);
 *                  type: object
 *                  $ref: '#/components/schemas/Comando'
 */
-router.patch("/:id", authenticateToken, comandoController.updateComando);
+router.patch("/:id", comandoController.updateComando);
 
 /** DELETE - /api/v1/comandos/{id}
 * @swagger
@@ -187,6 +186,6 @@ router.patch("/:id", authenticateToken, comandoController.updateComando);
 *      '200':
 *        description: A successful response
 */
-router.delete("/:id", authenticateToken, comandoController.deleteComando);
+router.delete("/:id", comandoController.deleteComando);
 
 module.exports = router;

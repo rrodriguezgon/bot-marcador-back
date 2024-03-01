@@ -17,7 +17,23 @@ async function loginUser(req, res) {
       const { username, password } = req.body;
       const user = await userService.loginUser(username, password);
       if (user){
-        console.log(process.env.token);
+        const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '1h' });
+        res.json({ token });
+      } else {
+        res.status(503).json({ error: 'Authentication failed' });
+      }
+      
+    } catch (error) {
+      console.log(error)
+      res.status(503).json({ error: 'Authentication failed' });
+    }
+  };
+
+  async function refresh(req, res) {
+    try {
+      const { username } = req.body;
+      const user = await userService.validUser(username);
+      if (user){
         const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '1h' });
         res.json({ token });
       } else {
@@ -33,4 +49,5 @@ async function loginUser(req, res) {
   module.exports = {
     registerUser,
     loginUser,
+    refresh,
   };

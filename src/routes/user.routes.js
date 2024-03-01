@@ -7,6 +7,8 @@ router.post("/register", userController.registerUser);
 
 router.post("/login", userController.loginUser);
 
+router.post("/refresh", userController.refresh);
+
 // Protected route example
 router.get('/protected', authenticateToken, (req, res) => {
     // Your protected route logic here

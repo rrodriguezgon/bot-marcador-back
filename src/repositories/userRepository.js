@@ -32,7 +32,24 @@ const loginUser = async (username, password) => {
   }
 };
 
+const validUser = async (username) => {
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      const error = new Error("Authentication failed");
+      error.code = 401;
+
+      throw error;
+    }
+    return user;
+  } catch (ex) {
+    ex.code = 500;
+    throw ex;
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  validUser,
 };

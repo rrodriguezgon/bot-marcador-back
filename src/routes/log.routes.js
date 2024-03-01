@@ -1,7 +1,6 @@
 const express = require("express");
 const logController = require("../controllers/logController");
 const router = express.Router();
-const authenticateToken = require('../middleware/authenticateToken');
 
 /** Component
  * @swagger
@@ -53,7 +52,7 @@ const authenticateToken = require('../middleware/authenticateToken');
  *                  items:
  *                      $ref: '#/components/schemas/Log'
  */
-router.get("/", authenticateToken, logController.getAllLogs);
+router.get("/", logController.getAllLogs);
 
 /** POST - /api/v1/logs/Filters
 * @swagger
@@ -73,6 +72,6 @@ router.get("/", authenticateToken, logController.getAllLogs);
 *                  items:
 *                      $ref: '#/components/schemas/Log'
 */
-router.post("/filters", authenticateToken, logController.getAllLogsWithFilters);
+router.post("/filters", logController.getAllLogsWithFilters);
 
 module.exports = router;
