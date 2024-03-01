@@ -28,4 +28,4 @@ jobs:
         port: 4568
         username: ubuntu
         password: 9bPEfwDX9gkG
-        script: pm2 restart 2
+        script: pm2 restart 1
