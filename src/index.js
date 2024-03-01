@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan"); // Carga el logger de Morgan
 const bodyParser = require("body-parser");
-const { limiter } = require('./middleware/rateLimit');
+const limiter = require('./middleware/rateLimit');
 const routes = require("./routes/index");
 
 // Config swagger
