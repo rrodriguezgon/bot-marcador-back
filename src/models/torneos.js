@@ -21,7 +21,8 @@ const torneo = mongoose.Schema({
         fase: String,
         url: String,
     }],
-    linkMarcador: String
+    linkMarcador: String,
+    desactivarMarcador: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("torneo", torneo);

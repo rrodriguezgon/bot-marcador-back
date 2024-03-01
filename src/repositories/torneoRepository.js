@@ -52,8 +52,21 @@ const getTorneoById = async (id) => {
   }
 };
 
+const updateTorneo = async (id, uptorneo) => {
+
+  return await Torneo
+    .findByIdAndUpdate(id, uptorneo, {
+      new: true,
+      upsert: true, // Make this update into an upsert
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 module.exports = {
   getAllTorneos,
   getAllTorneosWithFilters,
   getTorneoById,
+  updateTorneo,
 };

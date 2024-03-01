@@ -31,8 +31,22 @@ const getTorneoById = async (req, res, next) => {
     }
 };
 
+const updateTorneo = async (req, res, next) => {
+    try {
+        const { body, params } = req;
+        const { id } = params;
+
+        const torneo = await torneoService.updateTorneo(id, body);
+        res.status(200).json(torneo);
+    } catch(err){
+        console.error(err);
+        res.status(500).send('Error');
+    }
+};
+
 module.exports = {
     getAllTorneos,
     getAllTorneosWithFilters,
     getTorneoById,
+    updateTorneo,
 };

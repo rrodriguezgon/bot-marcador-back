@@ -132,4 +132,37 @@ router.post("/filters", torneoController.getAllTorneosWithFilters);
 */
 router.get("/:id", torneoController.getTorneoById);
 
+/** PATCH - /api/v1/torneos/{id}
+* @swagger
+* /api/v1/comandos/{id}:
+*  patch:
+*    tags: [comando]
+*    description: Use to request one comando
+*    security:
+*     - bearerAuth: []
+*    parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: Numeric ID of the comando to get
+*    requestBody:
+*      description: Nuevo objeto
+*      content:
+*        application/json:
+*              schema:
+*                  type: object
+*                  $ref: '#/components/schemas/Comando'
+*    responses:
+*      '200':
+*        description: A successful response
+*        content:
+*          application/json:
+*              schema:
+*                  type: object
+*                  $ref: '#/components/schemas/Comando'
+*/
+router.patch("/:id", torneoController.updateTorneo);
+
 module.exports = router;

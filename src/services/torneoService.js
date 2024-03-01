@@ -24,8 +24,17 @@ const getTorneoById = async (id) => {
     }
 };
 
+const updateTorneo = async (id, torneo) => {
+    try {
+        return await torneoRepository.updateTorneo(id, torneo);
+    } catch(err){
+        throw err;
+    }
+};
+
 module.exports = {
     getAllTorneos,
     getAllTorneosWithFilters,
     getTorneoById,
+    updateTorneo,
 };
