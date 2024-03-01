@@ -27,7 +27,4 @@ jobs:
         port: 4568
         username: ubuntu
         password: 9bPEfwDX9gkG
-        script: |
-          cd /home/ubuntu/bot-marcador-back
-          npm install
-          pm2 restart 2
+        script: pm2 restart 2
