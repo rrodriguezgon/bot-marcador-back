@@ -1,7 +1,6 @@
 const express = require("express");
 const torneoController = require("../controllers/torneoController");
 const router = express.Router();
-const authenticateToken = require('../middleware/authenticateToken');
 
 // https://swagger.io/docs/specification/basic-structure/
 /** Component

@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan"); // Carga el logger de Morgan
 const bodyParser = require("body-parser");
+const { limiter } = require('./middleware/rateLimit');
 const routes = require("./routes/index");
 
 // Config swagger
@@ -18,6 +19,7 @@ const mongoConnect = require("./config/mongo");
 const app = express();
 
 app
+  .use(limiter) // Apply the rate limiting middleware to all requests.
   .use(cors())
   .use(morgan("dev")) // Carga el middleware de Morgan
   .use(bodyParser.json()) // to support JSON-encoded bodies

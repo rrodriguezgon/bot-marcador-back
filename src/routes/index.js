@@ -7,12 +7,11 @@ const userRoutes = require("./user.routes");
 
 // middlewares
 const authenticateToken = require('../middleware/authenticateToken');
-const limiter = require('../middleware/rateLimit');
 
-router.use("/api/v1/torneos", limiter, authenticateToken, torneoRoutes);
-router.use("/api/v1/logs",limiter, authenticateToken, logRoutes);
-router.use("/api/v1/comandos", limiter, authenticateToken, comandoRoutes);
-router.use("/api/v1/user", limiter, userRoutes);
+router.use("/api/v1/torneos", authenticateToken, torneoRoutes);
+router.use("/api/v1/logs", authenticateToken, logRoutes);
+router.use("/api/v1/comandos", authenticateToken, comandoRoutes);
+router.use("/api/v1/user", userRoutes);
 
 module.exports = router;
  
