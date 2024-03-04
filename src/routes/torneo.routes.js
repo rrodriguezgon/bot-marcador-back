@@ -134,10 +134,10 @@ router.get("/:id", torneoController.getTorneoById);
 
 /** PATCH - /api/v1/torneos/{id}
 * @swagger
-* /api/v1/comandos/{id}:
+* /api/v1/torneos/{id}:
 *  patch:
-*    tags: [comando]
-*    description: Use to request one comando
+*    tags: [torneo]
+*    description: Use to request one torneo
 *    security:
 *     - bearerAuth: []
 *    parameters:
@@ -146,14 +146,14 @@ router.get("/:id", torneoController.getTorneoById);
 *         schema:
 *           type: string
 *         required: true
-*         description: Numeric ID of the comando to get
+*         description: Numeric ID of the torneo to get
 *    requestBody:
 *      description: Nuevo objeto
 *      content:
 *        application/json:
 *              schema:
 *                  type: object
-*                  $ref: '#/components/schemas/Comando'
+*                  $ref: '#/components/schemas/Torneo'
 *    responses:
 *      '200':
 *        description: A successful response
@@ -161,8 +161,29 @@ router.get("/:id", torneoController.getTorneoById);
 *          application/json:
 *              schema:
 *                  type: object
-*                  $ref: '#/components/schemas/Comando'
+*                  $ref: '#/components/schemas/Torneo'
 */
 router.patch("/:id", torneoController.updateTorneo);
+
+/** DELETE - /api/v1/torneos/{id}
+* @swagger
+* /api/v1/torneos/{id}:
+*  delete:
+*    tags: [torneo]
+*    description: Use to request one Torneo
+*    security:
+*     - bearerAuth: []
+*    parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: Numeric ID of the Torneo to get
+*    responses:
+*      '200':
+*        description: A successful response
+*/
+router.delete("/:id", torneoController.deleteTorneo);
 
 module.exports = router;

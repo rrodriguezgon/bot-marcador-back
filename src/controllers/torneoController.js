@@ -44,9 +44,21 @@ const updateTorneo = async (req, res, next) => {
     }
 };
 
+const deleteTorneo = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const torneo = await torneoService.deleteTorneo(id);
+        res.status(200).json(torneo);
+    } catch(err){
+        console.error(err);
+        res.status(500).send('Error');
+    }
+};
+
 module.exports = {
     getAllTorneos,
     getAllTorneosWithFilters,
     getTorneoById,
     updateTorneo,
+    deleteTorneo,
 };

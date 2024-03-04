@@ -1,12 +1,10 @@
 const User = require("../models/user");
 
 const registerUser = async (username, password) => {
-  try {
-    const user = new User({ username, password });
-    return await user.save();
-  } catch (ex) {
-    throw ex;
-  }
+  const user = new User({ username, password });
+  return await user.save().catch((err) => {
+    throw err;
+  });
 };
 
 const loginUser = async (username, password) => {

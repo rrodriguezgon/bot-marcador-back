@@ -1,6 +1,5 @@
 const userService = require('../services/userService');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
 async function registerUser(req, res) {
   try {
@@ -17,7 +16,7 @@ async function loginUser(req, res) {
       const { username, password } = req.body;
       const user = await userService.loginUser(username, password);
       if (user){
-        const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '24h' });
         res.json({ token });
       } else {
         res.status(503).json({ error: 'Authentication failed' });
@@ -34,7 +33,7 @@ async function loginUser(req, res) {
       const { username } = req.body;
       const user = await userService.validUser(username);
       if (user){
-        const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.token, { expiresIn: '24h' });
         res.json({ token });
       } else {
         res.status(503).json({ error: 'Authentication failed' });
