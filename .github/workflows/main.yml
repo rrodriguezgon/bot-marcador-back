@@ -24,5 +24,5 @@ jobs:
         username: ubuntu
         password: 9bPEfwDX9gkG
         port: 4568
-        source: ${{ steps.changed-files.outputs.all_changed_files }}
+        source: "./*,!node_modules"
         target: "/home/ubuntu/bot-marcador-back"
