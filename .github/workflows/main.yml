@@ -19,6 +19,6 @@ jobs:
         password: 9bPEfwDX9gkG
         port: 4568
         source: |
-            ./*
+            ./src
         target: /home/ubuntu/bot-marcador-back
         rm: true
