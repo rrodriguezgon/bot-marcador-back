@@ -26,4 +26,3 @@ jobs:
         port: 4568
         source: ${{ steps.changed-files.outputs.all_changed_files }}
         target: "/home/ubuntu/bot-marcador-back"
-        rm: true
